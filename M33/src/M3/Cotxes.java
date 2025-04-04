@@ -12,6 +12,7 @@ public class Cotxes extends Vehicle{
 		return esClassic;
 	}
 
+	//Comentari
 	public void setEsClassic(boolean esClassic) {
 		this.esClassic = esClassic;
 	}
