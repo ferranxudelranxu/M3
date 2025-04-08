@@ -2,10 +2,18 @@ package M3;
 
 import java.util.Objects;
 import java.util.TreeSet;
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.NotSerializableException;
+import java.io.ObjectOutputStream;
 import java.util.Iterator;
 
 public class Concessionaris {
@@ -156,6 +164,26 @@ public void importarVehicles(String direccioFitxer) throws IOException {
 		bReader.close();
 		
 		}
+		}
+	}
+
+	public void exportarVehiclesXML(String direccioFitxerXML) throws FileNotFoundException, IOException {
+		ObjectOutputStream fileOut = new ObjectOutputStream(new FileOutputStream(direccioFitxerXML));
+		for (Vehicle vehicle : llistaVehicles) {
+			fileOut.writeObject(vehicle);
+		}
+        fileOut.close();
+	}
+	
+	public void importarVehiclesXML(String direccioFitxerXML) throws FileNotFoundException, EOFException, NotSerializableException {
+		XMLDecoder decodificador = new XMLDecoder(new BufferedInputStream(new FileInputStream(direccioFitxerXML)));
+		try {
+			while (true) {
+				 Vehicle v1 = (Vehicle) decodificador.readObject();
+				 llistaVehicles.add(v1);
+			}
+		} catch (Exception e) {
+			System.out.println("Error amb el fitxer.");
 		}
 	}
 	

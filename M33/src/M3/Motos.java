@@ -1,6 +1,8 @@
 package M3;
 
-public class Motos extends Vehicle{
+import java.io.Serializable;
+
+public class Motos extends Vehicle implements Serializable {
 	private int cilindrada;
 
 	public Motos(String matricula, double km, int cilindrada) throws MatriculaInvalida {

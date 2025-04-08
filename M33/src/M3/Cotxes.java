@@ -1,9 +1,11 @@
 package M3;
 
-public class Cotxes extends Vehicle{
+import java.io.Serializable;
+
+public class Cotxes extends Vehicle  implements Serializable{
 	private boolean esClassic;
 
-	public Cotxes(String matricula, double km, boolean esClassic) throws MatriculaInvalida {
+	public Cotxes(String matricula, double km, boolean esClassic) throws MatriculaInvalida{
 		super(matricula, km);
 		this.esClassic = esClassic;
 	}
