@@ -11,9 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.NotSerializableException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.util.Iterator;
 
 public class Concessionaris {
@@ -96,13 +98,35 @@ public class Concessionaris {
 	}
 	
 	public void mostrarLlista() {
+		System.out.println("Llistat vehicles: ");
 		for (Vehicle vehicle : llistaVehicles) {
 			System.out.println(vehicle);
 		}
 	}
 	
+	@SuppressWarnings("resource")
+	public void exportarVehiclesCVS (String direccioFitxer) throws IOException{
+		FileWriter fWriter = null;
+		PrintWriter pWriter = null;
+		String vehicles;
+		try {
+			boolean append = false;
+			fWriter = new FileWriter(direccioFitxer, append);
+			pWriter = new PrintWriter(fWriter);
+			
+			
+			
+		}	catch (IOException e) {
+			System.out.println("Hi ha hagut un error.");
+			
+		}	catch (NullPointerException e2) {
+			System.out.println("L'arxiu no existeix.");
+			
+		}
+	}
+	
 	//Trobar i importar els vehicles.
-public void importarVehicles(String direccioFitxer) throws IOException {
+	public void importarVehiclesCSV(String direccioFitxer) throws IOException {
 		
 		FileReader fReader = null;
 		BufferedReader bReader = null;

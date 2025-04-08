@@ -1,8 +1,11 @@
 package M3;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class Cotxes extends Vehicle  implements Serializable{
+	static Scanner sc = new Scanner(System.in);
+
 	private boolean esClassic;
 
 	public Cotxes(String matricula, double km, boolean esClassic) throws MatriculaInvalida{
@@ -14,7 +17,6 @@ public class Cotxes extends Vehicle  implements Serializable{
 		return esClassic;
 	}
 
-	//Comentari
 	public void setEsClassic(boolean esClassic) {
 		this.esClassic = esClassic;
 	}
