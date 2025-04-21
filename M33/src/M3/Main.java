@@ -62,15 +62,31 @@ public class Main {
 			if (vehicle.equals("cotxe")) {
 				System.out.println("Escriu la matrícula:");
 				String matricula = sc.nextLine();
+				
 				System.out.println("Escriu els km:");
 				double km = sc.nextDouble();
+				
 				System.out.println("Escriu si és clàssic (true/false):");
 				String classic = sc.nextLine();
+				
 				if (classic.equals("true")) {
 					 esClassic = true;
 				}
 				Cotxes cn1 = new Cotxes(matricula, km, esClassic);
 				c1.afegirVehicle(cn1);
+			}
+			else {
+				System.out.println("Escriu la matrícula:");
+				String matricula = sc.nextLine();
+				
+				System.out.println("Escriu els km:");
+				double km = sc.nextDouble();
+				
+				System.out.println("Escriu la dada per a cilindrada:");
+				int cilindrada = sc.nextInt();
+				
+				Motos m1 = new Motos(matricula, km, cilindrada);
+				c1.afegirVehicle(m1);
 			}
 			break;
 			
@@ -81,11 +97,16 @@ public class Main {
 			break;
 			
 		case 6:
-			System.out.println("SI");
+			if (c1.mesKm() != null) {
+				System.out.println("El cotxe amb més quilòmetres és: " + c1.mesKm());
+			}
+			System.out.println("No hi ha cap cotxe.");
 			break;
 			
 		case 7:
-			System.out.println("SI");
+			System.out.println("Digues la direcció cap a un fitxer CSV (.txt) al qual guardar els vehicles: ");
+			direccioFitxer = sc.nextLine();
+			c1.exportarVehiclesCSV(direccioFitxer);		
 			break;
 			
 		case 8:

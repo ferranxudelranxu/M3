@@ -60,12 +60,14 @@ public class Concessionaris {
 		this.llistaVehicles = llistaVehicles;
 	}
 	
+	//Mostrar vehicle:
 	public void mostrarVehicle() {
 		for (Vehicle vehicle : llistaVehicles) {
 			System.out.println(vehicle);
 		}
 	}
 	
+	//Afegir vehicle:
 	public boolean afegirVehicle(Vehicle vehicle) {
 		if (llistaVehicles.add(vehicle) && NOMBRE_VEHICLES < 5) {
 			NOMBRE_VEHICLES ++;
@@ -73,7 +75,8 @@ public class Concessionaris {
 		}
 		return false;
 	}
-
+	
+	//Esborrar vehicles:
 	public String esborrarVehicle(String matricula) {
 		Iterator<Vehicle> iterator = llistaVehicles.iterator();
 		while (iterator.hasNext()) {
@@ -86,7 +89,29 @@ public class Concessionaris {
 		}
 		return "No s'ha pogut esborrar";
 	}
+	
+	//Cotxe amb més km:
+	public Cotxes mesKm() {
+	    Cotxes mesKm = null;
+	    double km = 0;
+	    Iterator<Vehicle> iterator = llistaVehicles.iterator();
 
+	    while (iterator.hasNext()) {
+	        Vehicle vehicle = iterator.next();
+
+	        if (vehicle instanceof Cotxes) {
+	            Cotxes c1 = (Cotxes) vehicle;
+	            if (c1.getKm() > km) {
+	                km = c1.getKm();
+	                mesKm = c1;
+	            }
+	        }
+	    }
+
+	    return mesKm; // pot ser null si no hi ha cap Cotxes
+	}
+	
+	//Calcular mitjana km:
 	public double mitjanaKm() {
 		int sumVehicles = 0;
 		int sumKm = 0;
@@ -97,6 +122,7 @@ public class Concessionaris {
 		return sumKm / sumVehicles;
 	}
 	
+	//Mostrar la llista:
 	public void mostrarLlista() {
 		System.out.println("Llistat vehicles: ");
 		for (Vehicle vehicle : llistaVehicles) {
@@ -190,7 +216,27 @@ public class Concessionaris {
 		}
 		}
 	}
-
+	
+	public void exportarVehiclesCSV(String direccioFitxer)  throws IOException {
+		boolean append = false;
+		try (PrintWriter pWriter = new PrintWriter(new FileWriter(direccioFitxer,
+		append))) {
+		for (Vehicle vehicle : llistaVehicles) {
+			if (vehicle instanceof Cotxes) {
+	            Cotxes c1 = (Cotxes) vehicle;
+	            pWriter.println(c1.getMatricula() + ";" + c1.getKm() + ";" + c1.isEsClassic());
+			}
+			else {
+				Motos m1 = (Motos) vehicle;
+				pWriter.println(m1.getMatricula() + ";" + m1.getKm() + ";" + m1.getCilindrada());
+			}
+			
+		}
+		} catch (Exception e) {
+		System.out.println(e.getMessage());
+		}
+	}
+	
 	public void exportarVehiclesXML(String direccioFitxerXML) throws FileNotFoundException, IOException {
 		ObjectOutputStream fileOut = new ObjectOutputStream(new FileOutputStream(direccioFitxerXML));
 		for (Vehicle vehicle : llistaVehicles) {
@@ -227,5 +273,7 @@ public class Concessionaris {
 		Concessionaris other = (Concessionaris) obj;
 		return Objects.equals(adreça, other.adreça) && Objects.equals(llistaVehicles, other.llistaVehicles);
 	}
+	
+	
 
 }
