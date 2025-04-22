@@ -9,14 +9,11 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		int cas = 0;
+		int cas = 9;
 		String direccioFitxer;
-		Concessionaris c1 = new Concessionaris ("Adreça 1");
-	
-	//String direccioFitxer1 = "/home/cfgs/Documents/si.txt";
-	//System.out.println("Digues la direcció cap a un segon fitxer el qual té un llistat de vehicles: ");
-	//String direccioFitxer2 = sc.nextLine();
-	//String direccioFitxer3 = "/home/cfgs/Documents/si.xml";
+		System.out.println("Quina és l'adreça del teu concessionari?");
+		String adreça = sc.nextLine();
+		Concessionaris c1 = new Concessionaris (adreça);
 
 	try {
 		System.out.println();
@@ -26,14 +23,16 @@ public class Main {
 	while (cas != 0) {
 		System.out.println("Digues què vols fer: "
 				+ "\n 0: Sortir "
-				+ "\n 1: Carregar vehicles des d'un fitxer CSV "
-				+ "\n 2: Carregar vehicles des d'un fitxer XML "
-				+ "\n 3: Mostrar el llistat de vehicles "
-				+ "\n 4: Valor màxim "
-				+ "\n 5: Cercar un element "
-				+ "\n 6: Mirar si està ordenat "
-				+ "\n 7: Ordenar vector "
-				+ "\n 8: Sortir" );		
+				+ "\n 1: Carregar vehicles des d'un fitxer CSV."
+				+ "\n 2: Carregar vehicles des d'un fitxer XML."
+				+ "\n 3: Mostrar el llistat de vehicles."
+				+ "\n 4: Afegir un vehicle."
+				+ "\n 5: Treure un vehicle mitjançant la matrícula."
+				+ "\n 6: Mirar quin cotxe té més Km."
+				+ "\n 7: Desar els vehicles a un fitxer CSV."
+				+ "\n 8: Desar els vehicles a un fitxer XML" );
+		cas = sc.nextInt();
+		sc.nextLine(); //Saltar la línea en blanc que queda pel sc.nextInt().
 		switch (cas) {
 		case 0:
 			System.out.println("Has decidit aturar el bucle.");

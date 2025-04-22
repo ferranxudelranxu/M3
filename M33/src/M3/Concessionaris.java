@@ -128,6 +128,8 @@ public class Concessionaris {
 		for (Vehicle vehicle : llistaVehicles) {
 			System.out.println(vehicle);
 		}
+		System.out.println("");
+		System.out.println("");
 	}
 	
 	@SuppressWarnings("resource")
@@ -224,11 +226,11 @@ public class Concessionaris {
 		for (Vehicle vehicle : llistaVehicles) {
 			if (vehicle instanceof Cotxes) {
 	            Cotxes c1 = (Cotxes) vehicle;
-	            pWriter.println(c1.getMatricula() + ";" + c1.getKm() + ";" + c1.isEsClassic());
+	            pWriter.println("cotxe;" + c1.getMatricula() + ";" + c1.getKm() + ";" + c1.isEsClassic());
 			}
 			else {
 				Motos m1 = (Motos) vehicle;
-				pWriter.println(m1.getMatricula() + ";" + m1.getKm() + ";" + m1.getCilindrada());
+				pWriter.println("moto;" + m1.getMatricula() + ";" + m1.getKm() + ";" + m1.getCilindrada());
 			}
 			
 		}
